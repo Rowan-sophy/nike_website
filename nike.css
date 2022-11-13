@@ -1,0 +1,558 @@
+html{
+    scroll-behavior: smooth;
+    /*this for all html page to smooth all the animation*/
+}
+body{
+    padding: 0px;
+    margin: 0px;
+}
+nav{
+    background-color: #111;
+    color: white;
+    padding: 20px 50px;
+
+}
+.navtop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search{
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.searchinput{
+    border: none;
+    background-color: transparent;
+    /*now the chrome frame of the textbox  would be gone*/
+
+}
+.searchinput::placeholder{
+    color: lightgray;
+    /*this for the text inside the input  becuase the text is written in html code inside placeholder 
+    if we want to play with it we need to  use this  classname:: placeholder this just for placeholder text not the text that the user gonna entered*/
+}
+.limitedoffer{
+    border-bottom: 2px solid green;
+    font: 20px;
+    cursor: pointer;
+
+}
+.navbottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.menuitem{
+    margin-right: 50px;
+    cursor: pointer;
+    color: lightgray;
+    font-weight: 400;
+
+}
+.slider{
+    background: url("https://images.unsplash.com/photo-1604147495798-57beb5d6af73?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80");
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+   /*why we  use clip path here? bc we want the pic of the sneakers to cover the whole img so we hide the other sneakers by using clip path
+   so after i use this clip path if  i move the screen horizontally  i won;t be seening any of the photo of the other sneekers but if idelet this line
+   i will see them  "keep in mind that the the background that i choose is back groung just for one item"*/
+   overflow: hidden;
+   /* bc we have this huge white spac when we move the slider so we gonna deleted by over flow*/
+}
+.sliderwrapper{
+    display: flex;
+    /* we want each item to contain full screen item so when i press like for instant air force in nav bottom the screen gonna move horizontal
+    and show me the item "keep in mind it should contain the whole screen"*/
+    width: 500vw;
+    /* A percentage of the full viewport width. 10vw will resolve to 10% of the current viewport width, or 48px on a phone that is 480px wide. 
+    The difference between % and vw is most similar to the difference between em and rem. 
+    A % length is relative to local context (containing element) width, while a vw length is relative to the full width of the browser window.*/
+    transition: all 1s ease-in-out;
+
+}
+.slideritem{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.sliderimg{
+    z-index: 1;
+    position: relative;
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+      /* i want this circle to be under the item so i am gonna use z-index*/
+}
+.sliderbg{
+    width: 750px;
+    height: 750px;
+    border-radius: 50%;
+    position:absolute;
+    background-color: blue;
+  
+}
+.slidertitle{
+    position: absolute;
+    color: white;
+    top: 10%;
+    right: 10%;
+    font-size: 60px;
+    font-weight: 900;
+    text-align: center;
+    z-index: 1;
+}
+.sliderprice{
+    position: absolute;
+    color: white;
+    top: 10%;
+    left: 10%;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    border: 1px solid gray;
+    z-index: 1;
+}
+.buy{
+    position: absolute;
+    color: white;
+    top: 50%;
+    right: 10%;
+    font-size: 30px;
+    font-weight: 900;
+    border: 1px solid gray;
+    cursor: pointer;
+    background-color: black;
+    z-index: 1;
+}
+.buy:hover{
+    background-color: white;
+    color: black;
+
+}
+/*to change the color of the circle for each item (sneakers) we gonna use nth child which is (slideritem) and choose from that: slidbg
+.sliderwrapper :nth-of-type(2){
+    /*here the children are the 5 div 'slideritem' but if we use nth-chlid it wouldn't work until i specified which element 'div'
+    but that would also creat a problem bc we had div inside slideritem 's div so it would chang the bachground of slideritem and the background
+    of sliderbg 'the circle behinde the the sneaker's photo '  
+    background-color: black;
+    how we could fix this problem???
+}*/
+.sliderwrapper:nth-child(1) .sliderbg{
+    /*this how we fix this problem ; if i use it this way it would chang color to all circle in inside all slideritem "all sliderweapper children"
+    and we want it to chnage every one to diffirent color*/
+    background-color: black;
+}
+/*.slideritem div:nth-child(2).sliderbg{
+    /*also if i did this it would change all the slider at the sametime bc what we're saying here is go to the child number 2 inside the 
+    slideritem which is div and change its color but what we acully want to do is want to select sbling number 2 between the slideritem and then we 
+    change the color of its  circle'sliderbg'
+    background-color: black;
+}*/
+/*.slideritem :nth-child(2).sliderbg {
+    /* this is really tricky one if you leave space after slideritem it would consider the slideritem as parent so it would go and change the 
+    background of the  every secondchild which is 'sliderbg' so the five sliderbg would bee changed at once  and here you have to 
+    choose childe number 2 bc the sliderbg is number 2
+    /* but id you left space after nth-child like what we did it means we considering slideritem as child and we go to slideritem number 1  and we 
+    just changing the the sliderbg ro slideritem number 1
+    here this example and the previous is equal becase when you leave space after the element without specify the the chlid it would goes to the n
+    child ehith the number that you choose
+    background-color: black; 
+}*/
+/*.slideritem:nth-child(2) .sliderbg {
+    background-color: black;
+    /* but id you left space after nth-child like what we did it means we considering slideritem as child and we go to slideritem number 1  and we 
+    just changing the the sliderbg ro slideritem number 1
+.sliderwrapper div:nth-child(1) .sliderbg{
+    /*here would do both erist it would consider sliderwrapper as parent anf would gp the frist child which is slideritem div and the we left space
+    before slider bag so it would just change the back ground of sliderbg 
+    this way is equal to previous one
+    background-color: #369e62;
+}*/
+.sliderwrapper div:nth-child(2) div.sliderbg{
+    background-color: rebeccapurple;
+}
+.sliderwrapper div:nth-child(3) .sliderbg{
+    background-color: teal;
+}
+.sliderwrapper div:nth-child(4) .sliderbg{
+    background-color: cornflowerblue;
+}
+.sliderwrapper div:nth-child(5) .sliderbg{
+   background-color:rgb(124,115,80);
+}
+.sliderwrapper div:nth-child(1) .sliderprice{
+    
+    color: #369e62;
+}
+.sliderwrapper div:nth-child(2) .sliderprice{
+    color: rebeccapurple;
+}
+.sliderwrapper div:nth-child(3) .sliderprice{
+    color: teal;
+}
+.sliderwrapper div:nth-child(4) .sliderprice{
+    color: cornflowerblue;
+}
+.sliderwrapper div:nth-child(5) .sliderprice{
+   color:rgb(124,115,80);
+}
+.features{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+.feature{
+display: flex;
+flex-direction: column;
+/*to make elment horizontal we use display:flex but to make it vertical we use flex-direction */
+align-items: center;
+text-align: center;
+}
+.featureimg{
+    width: 50px;
+    height: 50px;
+}
+.featuretit{
+    font-style: 20px;
+    font-weight: 600;
+    margin: 20px;
+}
+.featuredes{
+    color: gray;
+    width: 50%;
+    height: 100px;
+
+}
+.product{
+    height: 100vh;
+    background-color: whitesmoke;
+    position: relative;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+}
+.productimg{
+    width: 50%;
+}
+.productdetails{
+    position: absolute;
+    top: 10%;
+    right: 0;
+    width: 40%;
+    padding: 50px;
+}
+.ptoducttitle{
+    font-style: 75px;
+    font-weight: 900;
+}
+.productdes{
+    font-style: 24px;
+    color: gray;
+}
+.colors,.sizes {
+    display: flex;
+    margin-bottom: 20px;
+}
+.color{
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    background-color: black;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.color:last-child{
+    background-color: darkblue;
+}
+.size{
+    padding: 5px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid black ;
+    font-style: 20px;
+   
+}
+.productbutton{
+    float:right;
+    padding: 10 20;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.productbutton:hover{
+    background-color: white;
+    color: black;
+}
+.press{
+    background-color: black;
+    color: white;
+}
+.payment{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    /*this position relatated to product class that has position relative*/
+    /*to center this div i am gonna do the next*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    /*margin: auto; is what make the div in middle*/
+    padding: 10px 50px;
+    display: none;
+    /* display none here not gonna show me the the div and by using javascript we gonna make it show when i press button buy*/
+    flex-direction: column;
+    /*to create box shadow*/
+    -webkit-box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.56); 
+     box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.56);
+
+}
+.paytitle{
+    font-size: 20px;
+    color: lightgray;
+}
+label{
+    font-size: 14px;
+    font-weight: 300;
+}
+.payinput{
+    padding: 10px;
+    margin: 10px 0px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.payinput::placeholder{
+    color: lightgray;
+}
+.cardicons{
+    display: flex;
+}
+.cardicon{
+    margin-right: 10px;
+}
+.cardinfo{
+    display:flex;
+    justify-content: space-between;
+}
+.sm{
+    width: 30%;
+}
+.paybutton{
+    position: absolute;
+    height: 40px;
+    bottom: -40;
+    width: 100%;
+    left: 0;
+    -webkit-box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.56); 
+    box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.56);
+    background-color: #369e62;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.close{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color:gray;
+    color: white;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    padding: 2px;
+    cursor: pointer;
+}
+.gallery{
+   padding: 50px;
+   display: flex;
+}
+.galleryItem{
+    flex: 1;
+    /*that's tomake all the picture equal*/
+    padding: 50px;
+}
+.galleryImg{
+    width: 100%;
+}
+.newseason{
+    display: flex;
+}
+.nsitem{
+    flex: 1;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nsimg{
+    width: 100%;
+    height: 500px;
+}
+.nstitle{
+    font-style: 40px;
+}
+.nsbutton{
+    padding: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+footer{
+    display: flex;
+}
+.footerleft{
+    flex:2;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+.footerright{
+    flex:1;
+}
+.fmenutitle{
+ font-size: 16px;
+}
+.fmenulis{
+    padding: 0;
+}
+.listitem{
+    margin-bottom: 10px;
+    color: gray;
+    cursor: pointer;
+}
+
+.ficon{
+  
+  width: 10%;  
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 20px 5px;
+    
+}
+@media screen and (max-width:480px){
+    nav{
+        padding:20px;
+    }
+    .search{
+       display:none;
+    }
+    /*bc there is a overflow we're gonna use flex wrap  in this 
+    case if there's overflowing it's going to move other item into
+    new line */
+    .navbottom{
+        flex-wrap:wrap;
+
+    }
+    .menuitem{
+        margin:20px;
+        font-weight:700;
+        font-size:20px;
+        
+    }
+    .slider{
+        clip-path:none;
+    }
+    .sliderimg{
+        width:90%;
+    }
+    .sliderbg{
+        width:100%;
+        height:100%;
+    }
+    .slidertitle{
+        display:none;
+    }
+    .sliderprice{
+        top:unset;
+        bottom:0;
+        left:0;
+        background-color:lightgray;
+    }
+    .buy{
+        top:0;
+        right:0;
+
+    }
+    .features{
+      flex-direction:column;
+
+    }
+    .product{
+        height: 250%;
+        width: 100%;
+        clip-path:none;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        
+       
+       
+    }
+    .productimg{
+        width:70%;
+        order:1;
+       
+       
+    }
+    
+    .productDetails{
+       position:relative;
+       height: 70%;
+        order:2;
+        width:50%;
+        padding:0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+       
+        /*to seprete the detail from the pic so they wouldn't be above
+        each other iam gonna change the position of the details*/
+        top: 0;
+
+    }
+   
+    .ptoducttitle{
+        font-size:50px;
+        margin:0;
+    }
+    .gallery{
+        display:none;
+    }
+    .newseason{
+        flex-direction:column;
+    }
+    .nsitem:nth-child(2){
+        padding:50px;
+    }
+    footer{
+        flex-direction:column;
+    }
+    .footerleft{
+        padding:20px;
+        width:90%;
+        align-items:center;
+        background-color:whitesmoke;
+    }
+    .payment{
+        width:90%;
+        padding:20px;
+    }
+
+}

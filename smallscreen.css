@@ -1,0 +1,99 @@
+@media screen and (max-width:480px){
+    nav{
+        padding: 20px;
+    }
+    .search{
+       display:none;
+    }
+    /*bc there is a overflow we're gonna use flex wrap  in this 
+    case if there's overflowing it's going to move other item into
+    new line */
+    .navbottom{
+        flex-wrap:wrap;
+
+    }
+    .menuitem{
+
+        margin: 20px;
+        font-weight: 700;
+        font-size: 20px;
+        
+    }
+    .slider{
+        clip-path:none;
+    }
+    .sliderimg{
+        width: 90%;
+    }
+    .sliderbg{
+        width:100%;
+        height:100%;
+    }
+    .slidertitle{
+        display:none;
+    }
+    .sliderprice{
+        top:unset;
+        bottom:0;
+        left:0;
+        background-color:lightgray;
+    }
+    .buy{
+        top:0;
+        right:0;
+
+    }
+    .feature{
+        flex-direction: column;
+
+    }
+    .product{
+        clip-path:none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .productimg{
+        width: 80%;
+    }
+
+    .productdetails{
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /*to seprete the detail from the pic so they wouldn't be above
+        each other iam gonna change the position of the details*/
+        position: relative;
+        top: 0;
+    }
+    .ptoducttitle{
+        font-size: 50px;
+        margin: 0;
+    }
+    .gallery{
+        display: none;
+    }
+    .newseason{
+        flex-direction: column;
+    }
+    .nsitem:nth-child(2){
+        padding: 50px;
+    }
+    footer{
+        flex-direction: column;
+    }
+    .footerleft{
+        padding: 20px;
+        width: 90%;
+        align-items: center;
+        background-color: whitesmoke;
+    }
+    .payment{
+        width: 90%;
+        padding: 20px;
+    }
+
+}
